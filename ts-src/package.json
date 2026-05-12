@@ -1,6 +1,6 @@
 {
   "name": "substrai-guardrailgraph",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Composable AI safety pipeline framework with industry compliance packs (HIPAA, SOX, GDPR, FedRAMP)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
