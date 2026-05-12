@@ -3,7 +3,7 @@
 > **Composable AI safety pipeline framework** — define guardrails as a DAG of checks that work across any LLM provider, with industry-specific compliance packs for HIPAA, SOX, GDPR, and FedRAMP.
 
 [![PyPI](https://img.shields.io/pypi/v/substrai-guardrailgraph)](https://pypi.org/project/substrai-guardrailgraph/)
-[![npm](https://img.shields.io/npm/v/@substrai/guardrailgraph)](https://www.npmjs.com/package/@substrai/guardrailgraph)
+[![npm](https://img.shields.io/npm/v/substrai-guardrailgraph)](https://www.npmjs.com/package/substrai-guardrailgraph)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Why GuardrailGraph?
@@ -23,7 +23,7 @@ Every enterprise deploying LLMs needs guardrails. Current options are either pro
 pip install substrai-guardrailgraph
 
 # npm (TypeScript/JavaScript)
-npm install @substrai/guardrailgraph
+npm install substrai-guardrailgraph
 ```
 
 ## Quick Start
