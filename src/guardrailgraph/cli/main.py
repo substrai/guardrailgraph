@@ -6,7 +6,7 @@ import argparse
 import sys
 from typing import List, Optional
 
-from guardrailgraph.cli.commands import init, dev, test, validate
+from guardrailgraph.cli.commands import init, dev, test, validate, deploy, report, eject
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -15,57 +15,46 @@ def create_parser() -> argparse.ArgumentParser:
         prog="guardrailgraph",
         description="GuardrailGraph — Composable AI safety pipeline framework",
     )
-    parser.add_argument(
-        "--version", action="store_true", help="Show version"
-    )
+    parser.add_argument("--version", action="store_true", help="Show version")
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-    # init command
-    init_parser = subparsers.add_parser(
-        "init", help="Initialize a new GuardrailGraph project"
-    )
-    init_parser.add_argument(
-        "project_name", nargs="?", default="my-guardrails",
-        help="Project name (default: my-guardrails)",
-    )
-    init_parser.add_argument(
-        "--pack", choices=["hipaa", "sox", "gdpr", "basic"],
-        default="basic", help="Starter pack template",
-    )
-    init_parser.add_argument(
-        "--dir", default=".", help="Directory to create project in",
-    )
+    # init
+    init_parser = subparsers.add_parser("init", help="Initialize a new project")
+    init_parser.add_argument("project_name", nargs="?", default="my-guardrails")
+    init_parser.add_argument("--pack", choices=["hipaa", "sox", "gdpr", "basic"], default="basic")
+    init_parser.add_argument("--dir", default=".")
 
-    # dev command
-    dev_parser = subparsers.add_parser(
-        "dev", help="Start local development/testing server"
-    )
-    dev_parser.add_argument(
-        "--port", type=int, default=8080, help="Port for dev server",
-    )
+    # dev
+    dev_parser = subparsers.add_parser("dev", help="Start local dev server")
+    dev_parser.add_argument("--port", type=int, default=8080)
 
-    # test command
-    test_parser = subparsers.add_parser(
-        "test", help="Run guardrail tests"
-    )
-    test_parser.add_argument(
-        "--adversarial", action="store_true",
-        help="Run adversarial test suite",
-    )
-    test_parser.add_argument(
-        "--config", default="guardrailgraph.yaml",
-        help="Config file path",
-    )
+    # test
+    test_parser = subparsers.add_parser("test", help="Run guardrail tests")
+    test_parser.add_argument("--adversarial", action="store_true")
+    test_parser.add_argument("--config", default="guardrailgraph.yaml")
 
-    # validate command
-    validate_parser = subparsers.add_parser(
-        "validate", help="Validate pipeline configuration"
-    )
-    validate_parser.add_argument(
-        "--config", default="guardrailgraph.yaml",
-        help="Config file path",
-    )
+    # validate
+    validate_parser = subparsers.add_parser("validate", help="Validate config")
+    validate_parser.add_argument("--config", default="guardrailgraph.yaml")
+
+    # deploy
+    deploy_parser = subparsers.add_parser("deploy", help="Deploy infrastructure")
+    deploy_parser.add_argument("--env", default="dev", choices=["dev", "staging", "prod"])
+    deploy_parser.add_argument("--config", default="guardrailgraph.yaml")
+    deploy_parser.add_argument("--dry-run", action="store_true")
+
+    # report
+    report_parser = subparsers.add_parser("report", help="Generate compliance report")
+    report_parser.add_argument("--framework", default="general", choices=["general", "HIPAA", "SOX", "GDPR", "FedRAMP"])
+    report_parser.add_argument("--format", default="text", choices=["text", "json"])
+    report_parser.add_argument("--output", default=None)
+    report_parser.add_argument("--config", default="guardrailgraph.yaml")
+
+    # eject
+    eject_parser = subparsers.add_parser("eject", help="Export raw infrastructure")
+    eject_parser.add_argument("--format", default="cdk", choices=["cdk", "sam"])
+    eject_parser.add_argument("--config", default="guardrailgraph.yaml")
 
     return parser
 
@@ -84,12 +73,14 @@ def main(argv: Optional[List[str]] = None) -> int:
         parser.print_help()
         return 0
 
-    # Dispatch to command handlers
     commands = {
         "init": init.run,
         "dev": dev.run,
         "test": test.run,
         "validate": validate.run,
+        "deploy": deploy.run,
+        "report": report.run,
+        "eject": eject.run,
     }
 
     handler = commands.get(args.command)
