@@ -1,5 +1,5 @@
 """Industry compliance packs — HIPAA, SOX, GDPR, FedRAMP."""
 
-from guardrailgraph.packs import hipaa, financial
+from guardrailgraph.packs import hipaa, financial, gdpr, fedramp
 
-__all__ = ["hipaa", "financial"]
+__all__ = ["hipaa", "financial", "gdpr", "fedramp"]
