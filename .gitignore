@@ -43,3 +43,5 @@ Thumbs.db
 # Audit logs (generated)
 *.jsonl
 reports/
+ts-src/node_modules/
+ts-src/dist/

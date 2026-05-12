@@ -1,0 +1,47 @@
+{
+  "name": "substrai-guardrailgraph",
+  "version": "0.1.0",
+  "description": "Composable AI safety pipeline framework with industry compliance packs (HIPAA, SOX, GDPR, FedRAMP)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/tests/",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai-safety",
+    "guardrails",
+    "llm",
+    "compliance",
+    "hipaa",
+    "sox",
+    "gdpr",
+    "serverless",
+    "aws-lambda",
+    "dag",
+    "pipeline",
+    "pii",
+    "toxicity",
+    "prompt-injection"
+  ],
+  "author": "Gaurav Kumar Sinha <gaurav@substrai.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/substrai/guardrailgraph"
+  },
+  "homepage": "https://github.com/substrai/guardrailgraph",
+  "bugs": {
+    "url": "https://github.com/substrai/guardrailgraph/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
