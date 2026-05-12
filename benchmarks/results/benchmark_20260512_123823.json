@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-12T12:38:16.372164",
+    "version": "0.3.0",
+    "python_version": "3.14.4 (main, Apr  7 2026, 13:13:20) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "platform": "darwin"
+  },
+  "pipeline_latency": {
+    "empty (baseline)": {
+      "iterations": 100,
+      "avg_ms": 0.1126133103389293,
+      "p50_ms": 0.10687496978789568,
+      "p95_ms": 0.1409169053658843,
+      "p99_ms": 0.28187502175569534,
+      "min_ms": 0.09420793503522873,
+      "max_ms": 0.28187502175569534
+    },
+    "1 check (PII)": {
+      "iterations": 100,
+      "avg_ms": 0.5063545925077051,
+      "p50_ms": 0.28545898385345936,
+      "p95_ms": 1.87708402518183,
+      "p99_ms": 5.750124924816191,
+      "min_ms": 0.2317080507054925,
+      "max_ms": 5.750124924816191
+    },
+    "3 checks (PII+toxicity+injection)": {
+      "iterations": 100,
+      "avg_ms": 0.47997710993513465,
+      "p50_ms": 0.4205000586807728,
+      "p95_ms": 0.5621250020340085,
+      "p99_ms": 3.0309590511024,
+      "min_ms": 0.3954170970246196,
+      "max_ms": 3.0309590511024
+    },
+    "5 checks (full)": {
+      "iterations": 100,
+      "avg_ms": 0.5130062706302851,
+      "p50_ms": 0.4931249422952533,
+      "p95_ms": 0.6684580584987998,
+      "p99_ms": 0.9099580347537994,
+      "min_ms": 0.46604208182543516,
+      "max_ms": 0.9099580347537994
+    },
+    "HIPAA pack": {
+      "iterations": 100,
+      "avg_ms": 0.537812887923792,
+      "p50_ms": 0.4468329716473818,
+      "p95_ms": 0.7472090655937791,
+      "p99_ms": 6.447541061788797,
+      "min_ms": 0.40137500036507845,
+      "max_ms": 6.447541061788797
+    },
+    "FedRAMP pack": {
+      "iterations": 100,
+      "avg_ms": 0.5092224117834121,
+      "p50_ms": 0.4793750122189522,
+      "p95_ms": 0.7148340810090303,
+      "p99_ms": 1.1906659929081798,
+      "min_ms": 0.44112501200288534,
+      "max_ms": 1.1906659929081798
+    }
+  },
+  "pii_detection": {
+    "true_positives": 10,
+    "false_negatives": 0,
+    "true_negatives": 10,
+    "false_positives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "avg_latency_ms": 0.2636353950947523,
+    "p95_latency_ms": 0.30091695953160524
+  },
+  "injection_detection": {
+    "detection_rate": 0.9,
+    "detected": 9,
+    "total_injections": 10,
+    "false_positive_rate": 0.0,
+    "false_positives": 0,
+    "total_safe": 10,
+    "avg_latency_ms": 0.2641187410335988,
+    "p95_latency_ms": 0.2876250073313713
+  },
+  "compliance_packs": {
+    "HIPAA": {
+      "checks_count": 4,
+      "avg_latency_ms": 0.44933833337078494,
+      "p95_latency_ms": 0.49945805221796036,
+      "detection_rate": 1.0,
+      "total_runs": 75
+    },
+    "SOX/Financial": {
+      "checks_count": 3,
+      "avg_latency_ms": 0.4101078150173028,
+      "p95_latency_ms": 0.43875002302229404,
+      "detection_rate": 1.0,
+      "total_runs": 75
+    },
+    "GDPR": {
+      "checks_count": 6,
+      "avg_latency_ms": 0.5257682781666517,
+      "p95_latency_ms": 0.5846660351380706,
+      "detection_rate": 1.0,
+      "total_runs": 100
+    },
+    "FedRAMP": {
+      "checks_count": 5,
+      "avg_latency_ms": 0.4832049959804863,
+      "p95_latency_ms": 0.5297079915180802,
+      "detection_rate": 1.0,
+      "total_runs": 100
+    }
+  },
+  "throughput": {
+    "3 checks": {
+      "requests": 4678,
+      "duration_seconds": 2.000070457928814,
+      "requests_per_second": 2338.917602355036,
+      "avg_ms_per_request": 0.42754819536742494
+    },
+    "5 checks": {
+      "requests": 3898,
+      "duration_seconds": 2.000506625045091,
+      "requests_per_second": 1948.5064189238265,
+      "avg_ms_per_request": 0.5132136031413779
+    },
+    "HIPAA full": {
+      "requests": 3588,
+      "duration_seconds": 2.000298709026538,
+      "requests_per_second": 1793.732098015566,
+      "avg_ms_per_request": 0.5574968531289124
+    }
+  },
+  "comparison": {
+    "iterations": 500,
+    "raw_regex": {
+      "total_ms": 1.0035830782726407,
+      "avg_ms": 0.0020071661565452814
+    },
+    "guardrailgraph_2_checks": {
+      "total_ms": 183.66554100066423,
+      "avg_ms": 0.36733108200132847,
+      "overhead_vs_raw": 18200.98025534547
+    },
+    "guardrailgraph_hipaa": {
+      "total_ms": 220.52470908965915,
+      "avg_ms": 0.4410494181793183,
+      "overhead_vs_raw": 21873.737288319426
+    }
+  },
+  "package_size": {
+    "guardrailgraph": {
+      "source_files": 44,
+      "source_size_kb": 200.736328125,
+      "source_size_mb": 0.1960315704345703
+    },
+    "comparison": {
+      "nemo_guardrails_mb": 45.0,
+      "guardrails_ai_mb": 28.0,
+      "langchain_mb": 139.4
+    }
+  }
+}
