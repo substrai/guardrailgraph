@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-12T12:43:05.217375",
+    "region": "us-east-1",
+    "model": "anthropic.claude-3-haiku-20240307-v1:0",
+    "version": "0.3.0"
+  },
+  "comprehend_comparison": {
+    "comprehend": {
+      "avg_latency_ms": 178.24504167462388,
+      "per_text": [
+        {
+          "latency_ms": 357.9320410499349,
+          "entities": 3
+        },
+        {
+          "latency_ms": 90.7654999755323,
+          "entities": 3
+        },
+        {
+          "latency_ms": 86.03758399840444,
+          "entities": 3
+        }
+      ]
+    },
+    "guardrailgraph": {
+      "avg_latency_ms": 0.9564863673100868,
+      "per_text": [
+        {
+          "latency_ms": 1.2739580124616623,
+          "detected": true
+        },
+        {
+          "latency_ms": 0.935334013774991,
+          "detected": true
+        },
+        {
+          "latency_ms": 0.6601670756936073,
+          "detected": true
+        }
+      ]
+    },
+    "speed_advantage_x": 186.35398032477963
+  },
+  "bedrock_middleware": {
+    "raw_bedrock": {
+      "avg_latency_ms": 394.52116664809483,
+      "latencies": [
+        492.9102079477161,
+        356.2192920362577,
+        334.43399996031076
+      ]
+    },
+    "with_guardrailgraph": {
+      "avg_latency_ms": 335.7959173542137,
+      "latencies": [
+        397.992625948973,
+        277.61054201982915,
+        331.78458409383893
+      ]
+    },
+    "guardrail_overhead": {
+      "avg_ms": 3.5065977135673165,
+      "percentage_of_total": 1.0442645465127525,
+      "per_call": [
+        5.0562090473249555,
+        2.63841706328094,
+        2.825167030096054
+      ]
+    }
+  },
+  "end_to_end_hipaa": {
+    "test_cases": [
+      {
+        "label": "Safe prompt",
+        "blocked_at": null,
+        "total_ms": 1577.6393749983981,
+        "llm_ms": 1574.4442919967696,
+        "guardrail_ms": 3.0117910355329514,
+        "input_guardrail_ms": 1.1341660283505917,
+        "output_guardrail_ms": 1.8776250071823597,
+        "redacted": false,
+        "tokens": 116
+      },
+      {
+        "label": "PII in prompt",
+        "blocked_at": null,
+        "total_ms": 1776.4651669422165,
+        "llm_ms": 1773.100708029233,
+        "guardrail_ms": 3.2247499329969287,
+        "input_guardrail_ms": 1.4044999843463302,
+        "output_guardrail_ms": 1.8202499486505985,
+        "redacted": true,
+        "tokens": 121
+      },
+      {
+        "label": "Medical claim",
+        "blocked_at": null,
+        "total_ms": 2596.1072500795126,
+        "llm_ms": 2593.1779589736834,
+        "guardrail_ms": 2.8149590361863375,
+        "input_guardrail_ms": 1.2235420290380716,
+        "output_guardrail_ms": 1.5914170071482658,
+        "redacted": false,
+        "tokens": 115
+      },
+      {
+        "label": "Normal question",
+        "blocked_at": null,
+        "total_ms": 1183.577875024639,
+        "llm_ms": 1180.8467080118135,
+        "guardrail_ms": 2.6042500976473093,
+        "input_guardrail_ms": 1.0549580911174417,
+        "output_guardrail_ms": 1.5492920065298676,
+        "redacted": false,
+        "tokens": 115
+      }
+    ]
+  },
+  "local_throughput": {
+    "PII only": {
+      "requests_per_second": 3919.103902498996,
+      "avg_ms": 0.25516036953303417,
+      "total_requests": 11758
+    },
+    "3 checks": {
+      "requests_per_second": 2331.5751523236804,
+      "avg_ms": 0.42889460329142126,
+      "total_requests": 6995
+    },
+    "HIPAA full": {
+      "requests_per_second": 2265.5938217758776,
+      "avg_ms": 0.44138538443583575,
+      "total_requests": 6797
+    }
+  }
+}
