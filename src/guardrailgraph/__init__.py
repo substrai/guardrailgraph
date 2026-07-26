@@ -8,7 +8,7 @@ from guardrailgraph.core.context import CheckContext
 from guardrailgraph.core.ab_testing import ABTest, ab_test
 from guardrailgraph.core.human_review import ReviewQueue, ReviewRequest, ReviewStatus
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 __all__ = [
     "Action",
     "check",
